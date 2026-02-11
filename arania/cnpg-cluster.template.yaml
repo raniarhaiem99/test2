@@ -1,0 +1,20 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: arania
+spec:
+  instances: 1
+
+  # Image 
+  imageName: cerit.io/cloudnative-pg/postgresql:15.0
+
+  # DB Bootstrap Logic
+  bootstrap:
+    initdb:
+      database: mydb
+      owner: myowner
+
+  # Storage Configuration
+  storage:
+    size: 10Gi
+    storageClass: standard
