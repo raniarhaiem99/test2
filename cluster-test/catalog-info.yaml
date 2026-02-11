@@ -6,6 +6,8 @@ metadata:
   annotations:
     argocd/app-name: cluster-test
     vault.io/secrets-path: "cluster-postgres-cluster-test/database"
+    vault.io/secrets-engine: "secret"
+    vault.io/kv-version: "2"
 
 spec:
   type: database
