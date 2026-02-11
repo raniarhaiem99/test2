@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1alpha1
+kind: PushSecret
+metadata:
+  name: dev-cluster-vault-sync
+spec:
+  refreshInterval: 1h
+  secretStoreRefs:
+    - name: vault-backend
+      kind: ClusterSecretStore
+  selector:
+    secret:
+      name: dev-cluster-app
+  data:
+    - match:
+        secretKey: password
+        remoteRef:
+          # This creates: kv/clusters/test-cluster/password
+          remoteKey: "clusters/dev-cluster"
+          property: password
+    - match:
+        secretKey: user
+        remoteRef:
+          # This creates: kv/clusters/test-cluster/username
+          remoteKey: "clusters/dev-cluster"
+          property: username
