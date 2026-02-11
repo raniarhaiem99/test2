@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: arania
+  description: "Postgres cluster"
+  annotations:
+    argocd/app-name: arania
+    vault.io/secrets-path: "cluster-postgres-arania"
+
+spec:
+  type: database
+  owner: guest
