@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cluster-postgres
+  description: "Postgres cluster"
+  annotations:
+    argocd/app-name: cluster-postgres
+    # Points the Vault tab directly to this cluster's dossier
+    vault.io/secrets-path: "clusters/cluster-postgres"
+spec:
+  type: database
+  owner: guest
