@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: new-cluster
+  description: "Postgres cluster"
+  annotations:
+    argocd/app-name: new-cluster
+    vault.io/secrets-path: "new-cluster"
+spec:
+  type: database
+  owner: guest
