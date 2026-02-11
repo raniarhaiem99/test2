@@ -7,7 +7,6 @@ metadata:
     argocd/app-name: new-cluster
     vault.io/secrets-path: "new-cluster"
     vault.io/secrets-engine: "secret"
-    vault.io/kv-version: "2"
 spec:
   type: database
   owner: guest
