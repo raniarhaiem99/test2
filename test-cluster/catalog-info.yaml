@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd/app-name: test-cluster
     # Points the Vault tab directly to this cluster's dossier
-    vault.io/secrets-path: "clusters/test-cluster"
+    vault.io/secrets-path: "anything-else"
 
 spec:
   type: database
