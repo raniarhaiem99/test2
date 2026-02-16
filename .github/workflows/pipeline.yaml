@@ -2,7 +2,7 @@ name: Auto-merge Backstage PR
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened] # Simplified: usually only need 'opened' for auto-provisioning
     branches:
       - main
 
@@ -12,19 +12,13 @@ permissions:
 
 jobs:
   automerge:
+    # Only run for branches starting with 'backstage-'
     if: startsWith(github.head_ref, 'backstage-')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install GitHub CLI
-        run: |
-          sudo apt update
-          sudo apt install -y gh
-
-      - name: Merge Pull Request with gh
+      # No checkout or install needed! Just the merge command.
+      - name: Merge Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
