@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: my-mariadb
+  description: "Postgres cluster"
+  annotations:
+    argocd/app-name: my-mariadb
+    vault.io/secrets-path: "my-mariadb"
+
+spec:
+  type: database
+  owner: guest
+  lifecycle: development
