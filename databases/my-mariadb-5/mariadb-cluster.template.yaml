@@ -1,0 +1,40 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  # This uses the cluster_name from your values
+  name: my-mariadb-5
+spec:
+  # 1. Root/Admin Setup
+  rootPasswordSecretKeyRef:
+    # Variabilized name so it is unique to this cluster
+    name: my-mariadb-5-root
+    key: password
+    generate: true
+
+  # 2. Application Setup
+  username: myuser
+  database: mydb
+  passwordSecretKeyRef:
+    # Variabilized name for the app user secret
+    name: my-mariadb-5-app-user
+    key: password
+    generate: true
+
+
+  myCnf: |
+    [mariadb]
+    bind-address=*
+    default_storage_engine=InnoDB
+    binlog_format=row
+    innodb_autoinc_lock_mode=2
+    innodb_buffer_pool_size=1600M
+    max_allowed_packet=256M
+    
+  # Storage Configuration
+  storage:
+    size: 10
+    storageClassName: standard
+
+  port: 3306
+  service:
+    type: ClusterIP
